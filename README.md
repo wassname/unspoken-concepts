@@ -157,6 +157,10 @@ def method(hs: Float[Tensor, "layers tokens d"], embeddings: Float[Tensor, "toke
 
 The method has to find the place in the activations. We can't assume we know the best layer for a new model, so the method gets the input embeddings and the last half of the layers and has to work out which layer, or mix of layers, to use.
 
+<img src="figs/information_windows.png" data-fig-alt="Residual-state grid over You, are, absolutely. Upward arrows show residual flow; blue arrows illustrate attention across positions. Your function takes hs and returns a component shown as a shaded dashed box. The example readout, sure, certain, confident, is illustrative, not a measured result." alt="Residual-state grid over You, are, absolutely. Upward arrows show residual flow; blue arrows illustrate attention across positions. Your function takes hs and returns a component shown as a shaded dashed box. The example readout, sure, certain, confident, is illustrative, not a measured result." width="800" />
+
+Figure 3: Your function takes the supplied activations and returns a residual-stream component, which we read as words.
+
 The returned vector should happen to hold the unspoken concept. You may use the output head as a matrix, for example its main directions, but not to score individual words.
 
 Each method has one fixed setting (for example a rank). You can try settings on the dev pair, Russian to Korean; we only report the test pairs.
